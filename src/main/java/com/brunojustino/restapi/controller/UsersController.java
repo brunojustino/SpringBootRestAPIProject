@@ -43,7 +43,6 @@ public class UsersController {
 	public ResponseEntity<Users> createUser(@RequestBody Users users) {
 		Users newUsers = repo.save(users);
 		return ResponseEntity.status(HttpStatus.CREATED).body(newUsers);
-		
 	}
 	
 	@PutMapping("/users/update/{id}")

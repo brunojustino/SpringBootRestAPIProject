@@ -1,11 +1,9 @@
 package com.brunojustino.restapi.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Users")
@@ -18,6 +16,10 @@ public class Users {
 	private String name;
 	@Column(name="email")
 	private String email;
+
+//	@OneToOne(mappedBy = "users")
+//	@PrimaryKeyJoinColumn
+//	private Journal journal;
 	
 	public Users() {
 		// TODO Auto-generated constructor stub
