@@ -2,41 +2,40 @@ package com.brunojustino.restapi.entity;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
-@Table(name = "Users")
-public class Users {
+@Table(name = "User")
+public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	@Column(name = "name")
 	private String name;
 	@Column(name="email")
 	private String email;
 
-//	@OneToOne(mappedBy = "users")
+//	@OneToOne(mappedBy = "user")
 //	@PrimaryKeyJoinColumn
 //	private Journal journal;
 	
-	public Users() {
+	public User() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	public Users(String name, String email) {
+	public User(String name, String email) {
 		super();
 		this.name = name;
 		this.email = email;
 	}
 
-
-	public int id() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public Long id() {
+		return id;
+	}
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -54,7 +53,7 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users{" +
+		return "User{" +
 				"id=" + id +
 				", name='" + name + '\'' +
 				", email='" + email + '\'' +

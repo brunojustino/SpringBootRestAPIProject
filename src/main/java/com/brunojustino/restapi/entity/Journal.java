@@ -10,11 +10,11 @@ import java.sql.Timestamp;
 public class Journal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="user_id")
-    private Users users;
+    private User user;
 
     @Column(name = "text")
     private String text;
@@ -27,19 +27,28 @@ public class Journal {
 
     }
 
-    public Journal(Users users, String text, Timestamp date) {
+    public Journal(User user, String text, Timestamp date) {
         super();
-        this.users = users;
+        this.user = user;
         this.text = text;
         this.date = date;
     }
 
-    public Users getUsers() {
-        return users;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getText() {
@@ -62,7 +71,7 @@ public class Journal {
     public String toString() {
         return "Journal{" +
                 "id=" + id +
-                ", users=" + users +
+                ", user=" + user +
                 ", text='" + text + '\'' +
                 ", date=" + date +
                 '}';

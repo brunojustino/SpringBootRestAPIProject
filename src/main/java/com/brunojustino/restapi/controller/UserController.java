@@ -2,7 +2,7 @@ package com.brunojustino.restapi.controller;
 
 import java.util.List;
 
-import com.brunojustino.restapi.entity.Users;
+import com.brunojustino.restapi.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,49 +15,49 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.brunojustino.restapi.repository.UsersRepository;
+import com.brunojustino.restapi.repository.UserRepository;
 
 @RestController
-public class UsersController {
+public class UserController {
 	
 	@Autowired
-	UsersRepository repo;
+	UserRepository repo;
 	//get all the users
 	//localhost:8080/users
 	@GetMapping("/users")
-	public List<Users> getAllUsers(){
-		 List<Users> users = repo.findAll();
+	public List<User> getAllUsers(){
+		 List<User> users = repo.findAll();
 		  return users;
 	}
 	
 	//localhost:8080/users/1
-	@GetMapping("/users/{id}")
-	public Users getUser(@PathVariable int id) {
-		Users users = repo.findById(id).get();
+	@GetMapping("/user/{id}")
+	public User getUser(@PathVariable Long id) {
+		User user = repo.findById(id).get();
 		
-		return users;
+		return user;
 		
 	}
 	
-	@PostMapping("/users/add")
-	public ResponseEntity<Users> createUser(@RequestBody Users users) {
-		Users newUsers = repo.save(users);
-		return ResponseEntity.status(HttpStatus.CREATED).body(newUsers);
+	@PostMapping("/user/add")
+	public ResponseEntity<User> createUser(@RequestBody User user) {
+		User newUser = repo.save(user);
+		return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
 	}
 	
-	@PutMapping("/users/update/{id}")
-	public Users updateUsers(@PathVariable int id) {
-	   Users users = repo.findById(id).get();
-	   users.setName("poonam");
-	   repo.save(users);
-	   return users;
+	@PutMapping("/user/update/{id}")
+	public User updateUser(@PathVariable Long id) {
+	   User user = repo.findById(id).get();
+	   user.setName("poonam");
+	   repo.save(user);
+	   return user;
 		
 	}
-	@DeleteMapping("/users/delete/{id}")
+	@DeleteMapping("/user/delete/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void removeUser(@PathVariable int id) {
-		Users users = repo.findById(id).get();
-		repo.delete(users);
+	public void removeUser(@PathVariable Long id) {
+		User user = repo.findById(id).get();
+		repo.delete(user);
 	}
 
 }
